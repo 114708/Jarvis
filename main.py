@@ -23,38 +23,42 @@ def take_command():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'alexa' in command:
-                command = command.replace('alexa', '')
+            if 'jarvis' in command:
+                command = command.replace('jarvis', '')
                 print(command)
     except:
         pass
     return command
 
 
-def run_alexa():
+def run_jarvis():
     command = take_command()
     print(command)
     if 'play' in command:
         song = command.replace('play', '')
-        talk('playing ' + song)
+        talk('now playing ' + song)
         pywhatkit.playonyt(song)
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%I:%M %p')
         talk('Current time is ' + time)
-    elif 'who the heck is' in command:
-        person = command.replace('who the heck is', '')
+    elif 'who is' in command:
+        person = command.replace('who is', '')
         info = wikipedia.summary(person, 1)
         print(info)
         talk(info)
-    elif 'date' in command:
-        talk('sorry, I have a headache')
-    elif 'are you single' in command:
-        talk('I am in a relationship with wifi')
     elif 'joke' in command:
         talk(pyjokes.get_joke())
+    elif 'Good news and bad news' in command:
+        talk('Good news I have got you a woman, bad news she is american')
+        # This is a quoted joke from a Twitch Streamer
+    elif 'Jack Manifol?' in command:
+        talk('Jack Mani-foll, Jack Mani-foll fall off bridge? Jack Mani fall of bridge. Jack Mani bye dudu du du')
+        # This also is a quoted joke from a Twitch Streamer
+    elif 'creeper' in command:
+        talk('aww man')
     else:
-        talk('Please say the command again.')
+        talk('Error. Please say the command again.')
 
 
 while True:
-    run_alexa()
+    run_jarvis()
